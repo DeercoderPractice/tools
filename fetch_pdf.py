@@ -3,7 +3,17 @@ from sys import argv
 import re
 import urllib
 
+### This needs to make sure again and again!
 url="http://vision.stanford.edu/teaching/cs231b_spring1415/"
+#src_url="http://vision.stanford.edu/teaching/cs231b_spring1415/syllabus.html"
+
+print "NOTE: add url webpage and make sure the fetch url is correct, especially the base url!"
+
+src_url = argv[1]
+print "source webpage: " + src_url
+
+## first fetch the source HTML page
+urllib.urlretrieve(src_url, filename="syllabus.html")
 
 txt = open("syllabus.html", "r")
 for line in txt:

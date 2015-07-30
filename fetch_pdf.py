@@ -28,8 +28,8 @@ for line in txt:
                                 fetch_url = url + str(ret)
                                 name = str(ret).split("/")[-1]
 				if fetch_url.find("<") == -1 or fetch_url.find(">") == -1:
-	                                print fetch_url + " ---> " + name
-       		                        urllib.urlretrieve(fetch_url, filename=name)
+					print fetch_url + " ---> " + name
+					urllib.urlretrieve(fetch_url, filename=name)
 			# for absolute path, just use it
                         else:
                                 name = str(ret).split("/")[-1]

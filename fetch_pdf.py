@@ -18,9 +18,10 @@ urllib.urlretrieve(src_url, filename="syllabus.html")
 txt = open("syllabus.html", "r")
 for line in txt:
         index = line.find(".pdf")
-        if index != -1:
+	index_ppt = line.find(".ppt")
+        if index != -1 or index_ppt != -1:
                 lists = line.split("\"")
-                rets = [list for list in lists if list.find(".pdf") != -1]
+                rets = [list for list in lists if list.find(".pdf") != -1 or list.find(".ppt") != -1]
                 for ret in rets:
 			# for relative path, combine it with previous path
                         if line.find("http:") == -1:
@@ -31,5 +32,7 @@ for line in txt:
 			# for absolute path, just use it
                         else:
                                 name = str(ret).split("/")[-1]
-				print ret + " ---> " + name
-                                urllib.urlretrieve(ret, filename=name)
+				# fix bugs: ret may not contain "http", just with "ppt/pdf"(line has but ret not)	
+				if ret.find("http:") != -1:
+					print ret + " ---> " + name
+                                	urllib.urlretrieve(ret, filename=name)

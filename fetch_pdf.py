@@ -22,11 +22,13 @@ for line in txt:
                 lists = line.split("\"")
                 rets = [list for list in lists if list.find(".pdf") != -1]
                 for ret in rets:
+			# for relative path, combine it with previous path
                         if line.find("http:") == -1:
                                 fetch_url = url + str(ret)
                                 name = str(ret).split("/")[-1]
                                 print fetch_url + " ---> " + name
                                 urllib.urlretrieve(fetch_url, filename=name)
+			# for absolute path, just use it
                         else:
                                 name = str(ret).split("/")[-1]
 				print ret + " ---> " + name

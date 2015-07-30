@@ -27,8 +27,9 @@ for line in txt:
                         if line.find("http:") == -1:
                                 fetch_url = url + str(ret)
                                 name = str(ret).split("/")[-1]
-                                print fetch_url + " ---> " + name
-                                urllib.urlretrieve(fetch_url, filename=name)
+				if fetch_url.find("<") == -1 or fetch_url.find(">") == -1:
+	                                print fetch_url + " ---> " + name
+       		                        urllib.urlretrieve(fetch_url, filename=name)
 			# for absolute path, just use it
                         else:
                                 name = str(ret).split("/")[-1]

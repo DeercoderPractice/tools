@@ -45,5 +45,6 @@ url="http://cs224d.stanford.edu/"
 print "NOTE: add url webpage and make sure the fetch url is correct, especially the base url!"
 
 src_url = argv[1]
+level = argv[2]
 print "source webpage: " + src_url
-fetch(src_url, 1)
+fetch(src_url, level)

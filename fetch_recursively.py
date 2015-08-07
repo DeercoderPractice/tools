@@ -3,10 +3,7 @@ from sys import argv
 import random 
 import urllib
 
-
-
-
-def fetch(src_url):
+def fetch(src_url, level):
 	## first fetch the source HTML page
 	num = 100000 * random.random()
 	filename = str(num)
@@ -34,13 +31,13 @@ def fetch(src_url):
 						print ret + " ---> " + name
 	                                	urllib.urlretrieve(ret, filename=name)
 		else:
-			if line.find("http:") != -1: # there is an url
+			if line.find("http:") != -1 and level != 0: # there is an url
 				lists = line.split("\"")
 				rets = [list for list in lists if list.find(".htm") != -1 or list.find(".html") != -1]
 				for ret in rets:
 					if ret.find("http:") != -1:
 						print "Now there is a new url, fetch it:%s"%ret
-						fetch(ret)
+						fetch(ret, 0)
 
 
 ### This needs to make sure again and again!
@@ -49,4 +46,4 @@ print "NOTE: add url webpage and make sure the fetch url is correct, especially 
 
 src_url = argv[1]
 print "source webpage: " + src_url
-fetch(src_url)
+fetch(src_url, 1)
